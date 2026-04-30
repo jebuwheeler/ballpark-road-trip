@@ -49,7 +49,9 @@ describe('Navigation', () => {
   it('mobile menu closes after navigating', () => {
     cy.viewport(375, 812)
     cy.visit('/')
+    NavPage.mobileMenu().should('not.exist')
     NavPage.openMobileMenu()
+    NavPage.mobileMenu().should('be.visible')
     NavPage.mobileLinkScores().click()
     NavPage.mobileMenu().should('not.exist')
     cy.url().should('include', '/scores')

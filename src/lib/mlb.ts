@@ -53,11 +53,28 @@ export async function getTodaySchedule(): Promise<MLBScheduleDate[]> {
 
 // ─── Standings ────────────────────────────────────────────────────────────────
 
+const DIVISION_NAMES: Record<number, string> = {
+  201: 'AL East',
+  202: 'AL Central',
+  203: 'AL West',
+  204: 'NL East',
+  205: 'NL Central',
+  206: 'NL West',
+}
+
 export async function getStandings(season: number): Promise<MLBStandingRecord[]> {
   const data = await mlbFetch<{ records: MLBStandingRecord[] }>(
     `/standings?leagueId=103,104&season=${season}&standingsTypes=regularSeason`
   )
-  return data.records ?? []
+  const records = data.records ?? []
+  // The API doesn't hydrate division names — patch them in from the known ID map
+  return records.map((r) => ({
+    ...r,
+    division: {
+      ...r.division,
+      name: DIVISION_NAMES[r.division.id] ?? `Division ${r.division.id}`,
+    },
+  }))
 }
 
 export async function getCurrentStandings(): Promise<MLBStandingRecord[]> {

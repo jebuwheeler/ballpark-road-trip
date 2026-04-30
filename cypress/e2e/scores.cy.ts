@@ -26,8 +26,8 @@ describe('Scores', () => {
 
   it('each score card has status, venue, and team rows', () => {
     ScoresPage.waitForLoad()
-    cy.get('[data-testid="scores-empty"]').then(($empty) => {
-      if (!$empty.length) {
+    cy.get('body').then(($body) => {
+      if (!$body.find('[data-testid="scores-empty"]').length) {
         ScoresPage.firstCard.status().should('exist')
         ScoresPage.firstCard.venue().should('exist')
         ScoresPage.firstCard.awayTeam().should('exist')
