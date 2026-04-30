@@ -36,7 +36,7 @@ export default function SignupPage() {
 
   if (success) {
     return (
-      <div className="flex flex-1 items-center justify-center px-4">
+      <div data-testid="signup-success" className="flex flex-1 items-center justify-center px-4">
         <div className="text-center max-w-sm">
           <span className="text-4xl">✅</span>
           <h2 className="text-xl font-bold text-white mt-4">Check your email</h2>
@@ -65,12 +65,13 @@ export default function SignupPage() {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <form data-testid="signup-form" onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-1.5">
               Email
             </label>
             <input
+              data-testid="signup-email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -85,6 +86,7 @@ export default function SignupPage() {
               Password
             </label>
             <input
+              data-testid="signup-password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -100,6 +102,7 @@ export default function SignupPage() {
               Confirm password
             </label>
             <input
+              data-testid="signup-confirm"
               type="password"
               value={confirm}
               onChange={(e) => setConfirm(e.target.value)}
@@ -110,12 +113,13 @@ export default function SignupPage() {
           </div>
 
           {error && (
-            <p className="text-red-400 text-sm bg-red-950 border border-red-800 rounded px-3 py-2">
+            <p data-testid="signup-error" className="text-red-400 text-sm bg-red-950 border border-red-800 rounded px-3 py-2">
               {error}
             </p>
           )}
 
           <button
+            data-testid="signup-submit"
             type="submit"
             disabled={loading}
             className="w-full bg-red-600 hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold py-2.5 rounded-lg transition-colors text-sm"

@@ -21,6 +21,8 @@ export default function StadiumMarker({ stadium, inTrip, onClick }: StadiumMarke
       }}
     >
       <div
+        data-testid="stadium-marker"
+        data-team={stadium.teamAbbr}
         className="stadium-marker cursor-pointer flex items-center justify-center rounded-full text-white text-[9px] font-bold shadow-lg border-2 transition-transform hover:scale-110 select-none"
         style={{
           width: inTrip ? 34 : 28,

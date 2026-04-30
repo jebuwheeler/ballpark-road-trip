@@ -15,6 +15,7 @@ export default function TeamCard({ team }: TeamCardProps) {
   return (
     <Link
       href={`/teams/${team.id}`}
+      data-testid="team-card"
       className="block rounded-lg overflow-hidden border border-gray-800 hover:border-gray-600 transition-all hover:scale-[1.02] hover:shadow-lg"
     >
       {/* Color banner */}
@@ -26,6 +27,7 @@ export default function TeamCard({ team }: TeamCardProps) {
       <div className="bg-gray-900 p-4">
         {/* Abbreviation badge */}
         <div
+          data-testid="team-abbr"
           className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-sm mb-3 mx-auto border-2"
           style={{
             backgroundColor: colors.primary,
@@ -35,7 +37,7 @@ export default function TeamCard({ team }: TeamCardProps) {
           {team.abbreviation}
         </div>
 
-        <h3 className="text-sm font-semibold text-white text-center leading-tight">
+        <h3 data-testid="team-name" className="text-sm font-semibold text-white text-center leading-tight">
           {team.name}
         </h3>
         <p className="text-xs text-gray-500 text-center mt-0.5">

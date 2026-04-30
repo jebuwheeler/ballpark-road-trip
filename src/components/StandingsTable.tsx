@@ -6,9 +6,9 @@ interface StandingsTableProps {
 
 export default function StandingsTable({ division }: StandingsTableProps) {
   return (
-    <div className="bg-gray-900 rounded-lg border border-gray-800 overflow-hidden">
+    <div data-testid="standings-table" className="bg-gray-900 rounded-lg border border-gray-800 overflow-hidden">
       <div className="px-4 py-3 border-b border-gray-800 bg-gray-800/50">
-        <h3 className="text-sm font-semibold text-white">
+        <h3 data-testid="standings-division-name" className="text-sm font-semibold text-white">
           {division.division.name}
         </h3>
       </div>
@@ -26,6 +26,7 @@ export default function StandingsTable({ division }: StandingsTableProps) {
           {division.teamRecords.map((record, i) => (
             <tr
               key={record.team.id}
+              data-testid="standings-row"
               className={`border-b border-gray-800/50 last:border-0 ${
                 i === 0 ? 'text-white' : 'text-gray-300'
               }`}

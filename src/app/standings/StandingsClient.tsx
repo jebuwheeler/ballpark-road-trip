@@ -20,6 +20,7 @@ export default function StandingsClient({ al, nl }: Props) {
         {(['al', 'nl'] as const).map((league) => (
           <button
             key={league}
+            data-testid={`standings-tab-${league}`}
             onClick={() => setTab(league)}
             className={`px-6 py-1.5 rounded text-sm font-semibold transition-colors ${
               tab === league

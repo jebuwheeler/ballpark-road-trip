@@ -33,6 +33,7 @@ export default function ScoresPage() {
             </span>
           )}
           <button
+            data-testid="scores-refresh"
             onClick={refetch}
             className="text-xs text-gray-400 hover:text-white transition-colors px-2 py-1 rounded border border-gray-700 hover:border-gray-500"
           >
@@ -42,7 +43,7 @@ export default function ScoresPage() {
       </div>
 
       {loading && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div data-testid="scores-loading" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {Array.from({ length: 6 }).map((_, i) => (
             <div
               key={i}
@@ -53,13 +54,13 @@ export default function ScoresPage() {
       )}
 
       {error && (
-        <div className="bg-red-950 border border-red-800 rounded-lg p-4 text-red-300 text-sm">
+        <div data-testid="scores-error" className="bg-red-950 border border-red-800 rounded-lg p-4 text-red-300 text-sm">
           {error}
         </div>
       )}
 
       {!loading && !error && games.length === 0 && (
-        <div className="text-center py-20 text-gray-500">
+        <div data-testid="scores-empty" className="text-center py-20 text-gray-500">
           <p className="text-4xl mb-3">⚾</p>
           <p className="text-lg font-medium text-gray-400">No games scheduled today</p>
           <p className="text-sm mt-1">Check back during the regular season (April – October)</p>
@@ -70,7 +71,7 @@ export default function ScoresPage() {
         <>
           {/* Live games first */}
           {liveGames.length > 0 && (
-            <section className="mb-8">
+            <section data-testid="scores-section-live" className="mb-8">
               <h2 className="text-xs font-semibold text-green-400 uppercase tracking-widest mb-3">
                 Live
               </h2>
@@ -84,7 +85,7 @@ export default function ScoresPage() {
 
           {/* Final games */}
           {games.filter((g) => g.status.abstractGameState === 'Final').length > 0 && (
-            <section className="mb-8">
+            <section data-testid="scores-section-final" className="mb-8">
               <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-3">
                 Final
               </h2>
@@ -100,7 +101,7 @@ export default function ScoresPage() {
 
           {/* Upcoming games */}
           {games.filter((g) => g.status.abstractGameState === 'Preview').length > 0 && (
-            <section>
+            <section data-testid="scores-section-upcoming">
               <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-3">
                 Upcoming
               </h2>

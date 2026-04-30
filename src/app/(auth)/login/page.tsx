@@ -40,12 +40,13 @@ export default function LoginPage() {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <form data-testid="login-form" onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-1.5">
               Email
             </label>
             <input
+              data-testid="login-email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -60,6 +61,7 @@ export default function LoginPage() {
               Password
             </label>
             <input
+              data-testid="login-password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -70,12 +72,13 @@ export default function LoginPage() {
           </div>
 
           {error && (
-            <p className="text-red-400 text-sm bg-red-950 border border-red-800 rounded px-3 py-2">
+            <p data-testid="login-error" className="text-red-400 text-sm bg-red-950 border border-red-800 rounded px-3 py-2">
               {error}
             </p>
           )}
 
           <button
+            data-testid="login-submit"
             type="submit"
             disabled={loading}
             className="w-full bg-red-600 hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold py-2.5 rounded-lg transition-colors text-sm"

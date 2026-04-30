@@ -10,14 +10,14 @@ function statusBadge(game: MLBGame) {
 
   if (state === 'Final') {
     return (
-      <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide">
+      <span data-testid="game-status" className="text-xs font-semibold text-gray-400 uppercase tracking-wide">
         Final
       </span>
     )
   }
   if (state === 'Live') {
     return (
-      <span className="flex items-center gap-1 text-xs font-semibold text-green-400 uppercase tracking-wide">
+      <span data-testid="game-status" className="flex items-center gap-1 text-xs font-semibold text-green-400 uppercase tracking-wide">
         <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
         {detail}
       </span>
@@ -30,7 +30,7 @@ function statusBadge(game: MLBGame) {
     timeZoneName: 'short',
   })
   return (
-    <span className="text-xs text-gray-500">{gameTime}</span>
+    <span data-testid="game-status" className="text-xs text-gray-500">{gameTime}</span>
   )
 }
 
@@ -38,13 +38,15 @@ function TeamRow({
   teamName,
   score,
   isWinner,
+  testId,
 }: {
   teamName: string
   score?: number
   isWinner?: boolean
+  testId?: string
 }) {
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between" data-testid={testId}>
       <span
         className={`text-sm ${isWinner ? 'font-bold text-white' : 'text-gray-300'}`}
       >
@@ -67,19 +69,21 @@ export default function ScoreCard({ game }: ScoreCardProps) {
   const { away, home } = game.teams
 
   return (
-    <div className="bg-gray-900 rounded-lg border border-gray-800 p-4 flex flex-col gap-3 hover:border-gray-700 transition-colors">
+    <div data-testid="score-card" className="bg-gray-900 rounded-lg border border-gray-800 p-4 flex flex-col gap-3 hover:border-gray-700 transition-colors">
       <div className="flex items-center justify-between mb-1">
         {statusBadge(game)}
-        <span className="text-xs text-gray-600">{game.venue.name}</span>
+        <span data-testid="game-venue" className="text-xs text-gray-600">{game.venue.name}</span>
       </div>
 
       <div className="flex flex-col gap-1.5">
         <TeamRow
+          testId="away-team"
           teamName={away.team.name}
           score={away.score}
           isWinner={away.isWinner}
         />
         <TeamRow
+          testId="home-team"
           teamName={home.team.name}
           score={home.score}
           isWinner={home.isWinner}
